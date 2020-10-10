@@ -1,0 +1,17 @@
+{
+  "name": "rbtc-price",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jonatan E. Duttweiler <jonatanduttweiler@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bn.js": "^5.1.3",
+    "nodemon": "^2.0.4",
+    "web3": "^1.3.0"
+  }
+}
