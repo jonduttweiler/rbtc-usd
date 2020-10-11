@@ -9,10 +9,14 @@ class CoinPairPrice {
         const abi = JSON.parse(jsonABI);
         const contract = new web3.eth.Contract(abi,address);
         this.contract = contract;
+        this.web3 = web3;
     }
 
-    peek(){
-        return this.contract.methods.peek().call();   
+    async peek(){
+        const web3 = this.web3;
+        const rawResult = await this.contract.methods.peek().call();
+        const value = web3.utils.hexToNumberString(rawResult[0]);
+        return web3.utils.fromWei(value);
     }
 
 

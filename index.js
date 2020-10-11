@@ -2,6 +2,7 @@
 const Web3 = require("web3");
 const MoC = require("./classes/MoC");
 const CoinPairPrice = require("./classes/CoinPairPrice");
+const BN = require("bn.js");
 
 const network = "https://public-node.testnet.rsk.co";
 
@@ -14,10 +15,10 @@ const addresses = {
 }
 
 async function init (){
-    const moc = new MoC(web3,addresses["MoC"]);
+    console.log(`[${new Date().toISOString()}]`)
     const coinPairPrice = new CoinPairPrice(web3,addresses["CoinPairPrice"]);
     const result = await coinPairPrice.peek();
-    console.log(result)    
+    console.log(result)
 }
 
 init()
