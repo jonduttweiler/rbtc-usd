@@ -1,4 +1,3 @@
-//en el constructor devolver la instancia
 const fs = require("fs");
 const path = require("path");
 const abiPath = path.join(__dirname,"..","/abi/MoCMedianizer.abi")

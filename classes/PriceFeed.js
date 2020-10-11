@@ -1,10 +1,11 @@
+//en el constructor devolver la instancia
 const fs = require("fs");
 const path = require("path");
-const abiPath = path.join(__dirname,"..","/abi/CoinPairPrice.abi")
+const abiPath = path.join(__dirname,"..","/abi/PriceFeed.abi")
 
-class CoinPairPrice {
-    constructor(web3, address) {
-        const jsonABI = fs.readFileSync(abiPath);
+class PriceFeed {
+    constructor(web3,address){
+        const jsonABI = fs.readFileSync(abiPath); 
         const abi = JSON.parse(jsonABI);
         const contract = new web3.eth.Contract(abi,address);
         this.contract = contract;
@@ -20,5 +21,4 @@ class CoinPairPrice {
 
 
 }
-
-module.exports = CoinPairPrice;
+module.exports = PriceFeed;
