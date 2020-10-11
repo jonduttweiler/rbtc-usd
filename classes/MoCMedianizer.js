@@ -1,9 +1,9 @@
 //en el constructor devolver la instancia
 const fs = require("fs");
 const path = require("path");
-const abiPath = path.join(__dirname,"..","/abi/MoC.abi")
+const abiPath = path.join(__dirname,"..","/abi/MoCMedianizer.abi")
 
-class MoC {
+class MoCMedianizer {
     constructor(web3,address){
         const jsonABI = fs.readFileSync(abiPath); 
         const abi = JSON.parse(jsonABI);
@@ -12,9 +12,13 @@ class MoC {
         this.web3 = web3;
     }
 
-    getMocPrecision(){
-        return this.contract.methods.getMocPrecision().call();
+    async peek(){
+        const web3 = this.web3;
+        const rawResult = await this.contract.methods.peek().call();
+        const value = web3.utils.hexToNumberString(rawResult[0]);
+        return web3.utils.fromWei(value);
     }
 
+
 }
-module.exports = MoC;
+module.exports = MoCMedianizer;
