@@ -11,6 +11,7 @@ class MoC {
         this.web3 = web3;
     }
 
+    
     getMocPrecision(){
         return this.contract.methods.getMocPrecision().call();
     }

@@ -34,12 +34,33 @@ async function getPeeks(){
 }
 
 
+const mocState = new MocState(web3,addresses["MoCState"]);
+
 async function init (){
     console.log(`[${new Date().toISOString()}]`)
-    const mocState = new MocState(web3,addresses["MoCState"]);
-    const res = await mocState.getBitcoinPrice()
-    console.log(res);
+    const btcPrice = await mocState.getBitcoinPrice();
+    const btcRate = await mocState.getExchangeRateBTC();
+
+    console.log(`[${new Date().toISOString()}] BTC PRICE: ${btcPrice}`);
+    console.log(`[${new Date().toISOString()}] BTC Rate: ${btcRate}`);
+
+    printBTCAmount(1000.70) //1000.7
+    printBTCAmount(14542.35) //14542.349999999999
+     
 }
+
+async function printBTCAmount(usdAmount){ //USD AMOUNT WITH TWO DECIMAL PLACES
+    const btcRate = await mocState.getExchangeRateBTC();
+    
+    let fiatAmount = usdAmount * 100;
+    let formattedFiatAmount = (fiatAmount /100).toFixed(2);
+
+    let tokenAmountWei = (fiatAmount * btcRate);
+    let tokenAmount = tokenAmountWei * (10**18);
+
+    console.log(`[${new Date().toISOString()}] [${formattedFiatAmount} USD] = [ ${tokenAmount} BTC]`);
+}
+
 
 init()
 

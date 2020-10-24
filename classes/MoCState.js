@@ -14,8 +14,17 @@ class MocState {
  
     async getBitcoinPrice(){
         const btcPrice =  await this.contract.methods.getBitcoinPrice().call();
-        return this.web3.utils.fromWei(btcPrice);
+        return this.web3.utils.fromWei(btcPrice); 
     }
+
+    //returns amount of token (in wei) that equals 0.01 USD 
+    async getExchangeRateBTC(){
+        const btcPrice =  await this.contract.methods.getBitcoinPrice().call();
+        return 1/(btcPrice * 100);
+    }
+    
+
+
 
 }
 module.exports = MocState;
